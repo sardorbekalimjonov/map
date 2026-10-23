@@ -284,7 +284,7 @@ const TR = {
     navSale: "Aksiya",
     navNew: "Yangi uylar",
     navOld: "Eski uylar",
-    navVov: "Vovlilar",
+    navVov: "Hovlilar",
     navDescAll: "Barcha uylar",
     navDescMap: "Xaritadagi uylar",
     navDescSale: "Aksiya: chegirmadagi uylar",
@@ -2424,7 +2424,6 @@ document.addEventListener(
   });
 })();
 
-
 /* =====================================================================
    UyMap — 3d.js
    3D sahnalar, bo'lim bannerlari, bosh sahifa kartalari,
@@ -2459,7 +2458,9 @@ document.addEventListener(
 
   /* ---------- 3D qurilish bloklari ---------- */
   const bx = (w, h, d, c, x = 0, y = 0, z = 0, o = {}) =>
-    LT && o.d ? "" : `<div class="bx${o.cls ? " " + o.cls : ""}" style="--w:${w}px;--h:${h}px;--d:${d}px;--c:${c};left:calc(50% - ${w / 2}px);top:calc(50% - ${h / 2}px);transform:translate3d(${x}px,${y}px,${z}px)${o.rot ? ` rotateY(${o.rot}deg)` : ""}${o.rx ? ` rotateX(${o.rx}deg)` : ""}"><i class="fr">${o.t || ""}</i><i class="k"></i><i class="r"></i><i class="l"></i><i class="t"></i></div>`;
+    LT && o.d
+      ? ""
+      : `<div class="bx${o.cls ? " " + o.cls : ""}" style="--w:${w}px;--h:${h}px;--d:${d}px;--c:${c};left:calc(50% - ${w / 2}px);top:calc(50% - ${h / 2}px);transform:translate3d(${x}px,${y}px,${z}px)${o.rot ? ` rotateY(${o.rot}deg)` : ""}${o.rx ? ` rotateX(${o.rx}deg)` : ""}"><i class="fr">${o.t || ""}</i><i class="k"></i><i class="r"></i><i class="l"></i><i class="t"></i></div>`;
   const tri = (w, h, c, x, y, z, ry) =>
     `<div class="tri" style="--w:${w}px;--h:${h}px;--c:${c};left:calc(50% - ${w / 2}px);top:calc(50% - ${h / 2}px);transform:translate3d(${x}px,${y}px,${z}px) rotateY(${ry}deg)"></div>`;
   const G = (w, d, c) => bx(w, 5, d, c, 0, 44, 0);
@@ -2492,7 +2493,7 @@ document.addEventListener(
               H,
               28,
               i % 2 ? ACC : "#6fa99d",
-              (i % 3 - 1) * 42,
+              ((i % 3) - 1) * 42,
               41.5 - H / 2,
               (Math.floor(i / 3) - 1) * 42,
               { cls: "win" },
@@ -2558,7 +2559,10 @@ document.addEventListener(
   const io =
     "IntersectionObserver" in window
       ? new IntersectionObserver(
-          (es) => es.forEach((e) => e.target.classList.toggle("off", !e.isIntersecting)),
+          (es) =>
+            es.forEach((e) =>
+              e.target.classList.toggle("off", !e.isIntersecting),
+            ),
           { rootMargin: "40px" },
         )
       : null;
@@ -2572,51 +2576,127 @@ document.addEventListener(
   /* ---------- Bo'lim matnlari va statistika ---------- */
   const BN = {
     list: {
-      uz: ["Barcha uylar bir joyda", "Katta kartalarda barcha e'lonlarni ko'ring, saralang va filtrlang."],
-      ru: ["Все дома в одном месте", "Смотрите все объявления на больших карточках, сортируйте и фильтруйте."],
-      en: ["All homes in one place", "Browse every listing on big cards, then sort and filter."],
+      uz: [
+        "Barcha uylar bir joyda",
+        "Katta kartalarda barcha e'lonlarni ko'ring, saralang va filtrlang.",
+      ],
+      ru: [
+        "Все дома в одном месте",
+        "Смотрите все объявления на больших карточках, сортируйте и фильтруйте.",
+      ],
+      en: [
+        "All homes in one place",
+        "Browse every listing on big cards, then sort and filter.",
+      ],
     },
     sale: {
-      uz: ["Aksiya: chegirmadagi uylar", "Narxi tushirilgan uylar. Eski va yangi narxni solishtiring."],
-      ru: ["Акции: дома со скидкой", "Дома со сниженной ценой. Сравните старую и новую цену."],
-      en: ["Deals: discounted homes", "Homes with reduced prices. Compare old and new price."],
+      uz: [
+        "Aksiya: chegirmadagi uylar",
+        "Narxi tushirilgan uylar. Eski va yangi narxni solishtiring.",
+      ],
+      ru: [
+        "Акции: дома со скидкой",
+        "Дома со сниженной ценой. Сравните старую и новую цену.",
+      ],
+      en: [
+        "Deals: discounted homes",
+        "Homes with reduced prices. Compare old and new price.",
+      ],
     },
     new: {
-      uz: ["Yangi uylar", "Yangi qurilgan, hujjatlari tayyor uylar va zamonaviy binolar."],
-      ru: ["Новостройки", "Новые дома с готовыми документами и современные здания."],
-      en: ["New buildings", "Newly built homes with documents ready and modern buildings."],
+      uz: [
+        "Yangi uylar",
+        "Yangi qurilgan, hujjatlari tayyor uylar va zamonaviy binolar.",
+      ],
+      ru: [
+        "Новостройки",
+        "Новые дома с готовыми документами и современные здания.",
+      ],
+      en: [
+        "New buildings",
+        "Newly built homes with documents ready and modern buildings.",
+      ],
     },
     old: {
-      uz: ["Eski uylar", "Ikkilamchi bozor: tayyor ta'mirli, shahar markaziga yaqin uylar."],
-      ru: ["Вторичное жильё", "Вторичный рынок: дома с готовым ремонтом ближе к центру."],
-      en: ["Old houses", "Secondary market: renovated homes close to the city center."],
+      uz: [
+        "Eski uylar",
+        "Ikkilamchi bozor: tayyor ta'mirli, shahar markaziga yaqin uylar.",
+      ],
+      ru: [
+        "Вторичное жильё",
+        "Вторичный рынок: дома с готовым ремонтом ближе к центру.",
+      ],
+      en: [
+        "Old houses",
+        "Secondary market: renovated homes close to the city center.",
+      ],
     },
     vov: {
-      uz: ["Vovlilar: hovli va villalar", "Katta hovli, bog' va oilaviy hayot uchun keng uylar."],
-      ru: ["С участком: дворы и виллы", "Просторные дома с двором и садом для семьи."],
-      en: ["With yard: houses & villas", "Spacious homes with a yard and garden for family life."],
+      uz: [
+        "Vovlilar: hovli va villalar",
+        "Katta hovli, bog' va oilaviy hayot uchun keng uylar.",
+      ],
+      ru: [
+        "С участком: дворы и виллы",
+        "Просторные дома с двором и садом для семьи.",
+      ],
+      en: [
+        "With yard: houses & villas",
+        "Spacious homes with a yard and garden for family life.",
+      ],
     },
     student: {
-      uz: ["Talabalar uchun uylar", "Universitetga yaqin, arzon oylik ijara. Talaba guvohnomasi bilan."],
-      ru: ["Жильё для студентов", "Недорогая аренда рядом с университетами. По студенческому билету."],
-      en: ["Homes for students", "Cheap monthly rent near universities. Student ID required."],
+      uz: [
+        "Talabalar uchun uylar",
+        "Universitetga yaqin, arzon oylik ijara. Talaba guvohnomasi bilan.",
+      ],
+      ru: [
+        "Жильё для студентов",
+        "Недорогая аренда рядом с университетами. По студенческому билету.",
+      ],
+      en: [
+        "Homes for students",
+        "Cheap monthly rent near universities. Student ID required.",
+      ],
     },
     brokers: {
-      uz: ["Ishonchli maklerlar", "Tajribali maklerlar uy tanlash va rasmiylashtirishda yordam beradi."],
-      ru: ["Надёжные маклеры", "Опытные маклеры помогут выбрать дом и оформить сделку."],
-      en: ["Trusted brokers", "Experienced brokers help you choose a home and handle paperwork."],
+      uz: [
+        "Ishonchli maklerlar",
+        "Tajribali maklerlar uy tanlash va rasmiylashtirishda yordam beradi.",
+      ],
+      ru: [
+        "Надёжные маклеры",
+        "Опытные маклеры помогут выбрать дом и оформить сделку.",
+      ],
+      en: [
+        "Trusted brokers",
+        "Experienced brokers help you choose a home and handle paperwork.",
+      ],
     },
     delivery: {
-      uz: ["Ko'chirish dastavkasi", "UyMap orqali xarid qilganlarga yuk mashinalarida chegirma."],
-      ru: ["Доставка для переезда", "Скидка на грузовики для тех, кто купил дом через UyMap."],
-      en: ["Moving delivery", "Discount on moving trucks for those who bought via UyMap."],
+      uz: [
+        "Ko'chirish dastavkasi",
+        "UyMap orqali xarid qilganlarga yuk mashinalarida chegirma.",
+      ],
+      ru: [
+        "Доставка для переезда",
+        "Скидка на грузовики для тех, кто купил дом через UyMap.",
+      ],
+      en: [
+        "Moving delivery",
+        "Discount on moving trucks for those who bought via UyMap.",
+      ],
     },
   };
   const LBL = {
     cnt: { uz: "E'lonlar", ru: "Объявлений", en: "Listings" },
     avg: { uz: "O'rtacha narx", ru: "Средняя цена", en: "Avg. price" },
     min: { uz: "Eng arzon", ru: "Самое дешёвое", en: "Cheapest" },
-    disc: { uz: "O'rtacha chegirma", ru: "Средняя скидка", en: "Avg. discount" },
+    disc: {
+      uz: "O'rtacha chegirma",
+      ru: "Средняя скидка",
+      en: "Avg. discount",
+    },
     area: { uz: "O'rtacha maydon", ru: "Ср. площадь", en: "Avg. area" },
     year: { uz: "O'rtacha yil", ru: "Ср. год", en: "Avg. year" },
     uni: { uz: "Universitetlar", ru: "Университеты", en: "Universities" },
@@ -2627,9 +2707,22 @@ document.addEventListener(
     trk: { uz: "Mashinalar", ru: "Машин", en: "Trucks" },
   };
   const lb = (k) => LBL[k][LANG] || LBL[k].uz;
-  const PGK = { 1: "list", 3: "sale", 4: "new", 5: "old", 6: "vov", 7: "student", 8: "brokers", 9: "delivery" };
+  const PGK = {
+    1: "list",
+    3: "sale",
+    4: "new",
+    5: "old",
+    6: "vov",
+    7: "student",
+    8: "brokers",
+    9: "delivery",
+  };
   const pool = (k) =>
-    k == "sale" ? P.filter((p) => p.sale) : CATS.includes(k) ? P.filter((p) => p.cat == k) : P;
+    k == "sale"
+      ? P.filter((p) => p.sale)
+      : CATS.includes(k)
+        ? P.filter((p) => p.cat == k)
+        : P;
   const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
   function stats(k) {
     if (k == "brokers")
@@ -2652,12 +2745,21 @@ document.addEventListener(
       C = [n, lb("cnt")],
       Mn = [$$(mn) + (k == "student" ? t("perMonth") : ""), lb("min")];
     if (k == "sale") {
-      const ds = pl.filter((p) => p.old).map((p) => Math.round((1 - p.price / p.old) * 100));
+      const ds = pl
+        .filter((p) => p.old)
+        .map((p) => Math.round((1 - p.price / p.old) * 100));
       return [C, ["-" + Math.round(avg(ds)) + "%", lb("disc")], Mn];
     }
-    if (k == "new" || k == "old") return [C, A, [Math.round(avg(pl.map((p) => p.year))), lb("year")]];
-    if (k == "vov") return [C, A, [Math.round(avg(pl.map((p) => p.area))) + " m²", lb("area")]];
-    if (k == "student") return [C, Mn, [pl.filter((p) => p.uni).length, lb("uni")]];
+    if (k == "new" || k == "old")
+      return [C, A, [Math.round(avg(pl.map((p) => p.year))), lb("year")]];
+    if (k == "vov")
+      return [
+        C,
+        A,
+        [Math.round(avg(pl.map((p) => p.area))) + " m²", lb("area")],
+      ];
+    if (k == "student")
+      return [C, Mn, [pl.filter((p) => p.uni).length, lb("uni")]];
     return [C, A, Mn];
   }
   function renderBanner(i) {
@@ -2675,12 +2777,17 @@ document.addEventListener(
     }
     pb.style.display = "";
     const [ti, de] = BN[k][LANG] || BN[k].uz;
-    const st = stats(k).map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join("");
+    const st = stats(k)
+      .map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`)
+      .join("");
     const ch =
       k == "student"
         ? `<div class="pbch">${pool("student")
             .filter((p) => p.uni)
-            .map((p) => `<span class="chip" data-a="uni" data-id="${p.id}">${ic("pin")} ${p.uni.split(" (")[0]}</span>`)
+            .map(
+              (p) =>
+                `<span class="chip" data-a="uni" data-id="${p.id}">${ic("pin")} ${p.uni.split(" (")[0]}</span>`,
+            )
             .join("")}</div>`
         : "";
     pb.innerHTML = `<div class="pbt"><h2>${ti}</h2><p>${de}</p><div class="pbst">${st}</div>${ch}</div><div class="pbs3">${sceneHTML(k)}</div>`;
@@ -2696,7 +2803,15 @@ document.addEventListener(
   });
 
   /* ---------- Bosh sahifa: 3D bo'lim kartalari ---------- */
-  const CT = [[3, "sale"], [4, "new"], [5, "old"], [6, "vov"], [7, "student"], [8, "brokers"], [9, "delivery"]];
+  const CT = [
+    [3, "sale"],
+    [4, "new"],
+    [5, "old"],
+    [6, "vov"],
+    [7, "student"],
+    [8, "brokers"],
+    [9, "delivery"],
+  ];
   function renderCats() {
     let c = $("#cats");
     if (!c) {
@@ -2705,7 +2820,12 @@ document.addEventListener(
       $("#hero").insertAdjacentElement("afterend", c);
     }
     c.innerHTML = CT.map(([i, k]) => {
-      const n = k == "brokers" ? BROKERS.length : k == "delivery" ? DELIVERY.length : pool(k).length;
+      const n =
+        k == "brokers"
+          ? BROKERS.length
+          : k == "delivery"
+            ? DELIVERY.length
+            : pool(k).length;
       return `<div class="ct" data-a="nav" data-i="${i}" style="--cc:${COL[k]};--ac:${COL[k]}"><div class="cts">${sceneHTML(k, true)}</div><div><b>${navLabel(i)}</b><span>${n}</span></div></div>`;
     }).join("");
     watch();
@@ -2716,8 +2836,10 @@ document.addEventListener(
     if (LOW) return;
     const hero = $("#hero");
     const cubes = [
-      [4, 14, 22, 0, "#22b39f"], [26, 62, 16, 1.5, "#c17a2e"],
-      [52, 12, 14, 3, "#2f7be0"], [74, 60, 18, 0.8, "#4fa83a"],
+      [4, 14, 22, 0, "#22b39f"],
+      [26, 62, 16, 1.5, "#c17a2e"],
+      [52, 12, 14, 3, "#2f7be0"],
+      [74, 60, 18, 0.8, "#4fa83a"],
       [92, 16, 20, 2.6, "#d0457a"],
     ];
     hero.insertAdjacentHTML(
@@ -2750,9 +2872,18 @@ document.addEventListener(
   }
 
   /* ---------- Xaritada 3D binolar ---------- */
-  const H0 = { Kvartira: 30, "Yangi uy": 38, "Eski uy": 22, Hovli: 16, Villa: 20 };
+  const H0 = {
+    Kvartira: 30,
+    "Yangi uy": 38,
+    "Eski uy": 22,
+    Hovli: 16,
+    Villa: 20,
+  };
   const zk = () => Math.min(1.6, (M.z - 12.6) / 1.4);
-  const bh = (p) => (M.z < 13.4 ? 0 : Math.round(((H0[p.type] || 24) + (p.rooms || 1) * 2) * zk()));
+  const bh = (p) =>
+    M.z < 13.4
+      ? 0
+      : Math.round(((H0[p.type] || 24) + (p.rooms || 1) * 2) * zk());
   window.bho = (p) => {
     const h = bh(p);
     return h ? h + 6 : 0;
@@ -2781,7 +2912,8 @@ document.addEventListener(
         if (h > 26) {
           cx.fillStyle = "rgba(255,255,255,.5)";
           for (let yy = y - h + 5; yy < y - 6; yy += 8)
-            for (let xx = x - w / 2 + 3; xx < x + w / 2 - 4; xx += 7) cx.fillRect(xx, yy, 3, 4);
+            for (let xx = x - w / 2 + 3; xx < x + w / 2 - 4; xx += 7)
+              cx.fillRect(xx, yy, 3, 4);
         }
         cx.beginPath();
         cx.moveTo(x + w / 2, y);
@@ -2859,9 +2991,11 @@ document.addEventListener(
     _openDet(id, nohash);
     const p = P.find((x) => x.id == id),
       b = document.querySelector('#det .box[style*="sticky"]');
-    if (p && b)
-      {
-      b.insertAdjacentHTML("afterbegin", `<div class="dsc">${sceneHTML(CATS.includes(p.cat) ? p.cat : "old")}</div>`);
+    if (p && b) {
+      b.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="dsc">${sceneHTML(CATS.includes(p.cat) ? p.cat : "old")}</div>`,
+      );
       watch();
     }
   };
