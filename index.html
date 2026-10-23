@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UyMap — uylarni xaritadan toping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="v-home">
+<div id="ld"></div>
+<div class="app">
+  <header>
+    <div class="logo" id="lg">Uy<i>Map</i></div>
+    <div class="sw"><input id="q" autocomplete="off" placeholder=""><div id="dd"></div></div>
+    <div class="hr">
+      <button class="b" id="ad"><span id="adt"></span></button>
+      <button class="b" id="lgl"></button>
+      <button class="b" id="tt"></button>
+      <div id="au"></div>
+    </div>
+  </header>
+  <nav id="nv"></nav>
+  <section id="hero">
+    <div><h1 id="heroT"></h1><p id="heroD"></p><div id="pop"></div></div>
+    <div class="scene" id="hs"></div>
+  </section>
+  <section id="fw"><div id="feat"></div></section>
+  <main>
+    <div id="list">
+      <div id="lh"></div>
+      <div id="lt">
+        <div id="cnt"></div><span id="qc"></span>
+        <select id="so"></select>
+        <button class="b" id="ft"></button>
+        <button class="b" id="fv"></button>
+      </div>
+      <div id="fl" style="padding:0 12px 8px">
+        <select id="ftp"></select>
+        <select id="fds"></select>
+        <select id="frm"><option value="">Xonalar</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+</option></select>
+        <select id="fct"></select>
+        <input id="fmn" type="number" min="0">
+        <input id="fmx" type="number" min="0">
+        <input id="fan" type="number" min="0">
+        <input id="fax" type="number" min="0">
+        <button class="b" id="fc"></button>
+      </div>
+      <div id="cards"></div>
+    </div>
+    <div id="mapw">
+      <canvas id="cv"></canvas>
+      <div id="mk"></div><div id="cl"></div><div id="qp"></div>
+      <div class="ctl"><button id="zi">+</button><button id="zo">−</button><button id="lc">◎</button></div>
+      <div id="mini"></div>
+    </div>
+  </main>
+</div>
+<div id="det"></div>
+<div id="md"><div id="mb"></div></div>
+<div id="ap"></div>
+<div id="ts"></div>
+<script src="script.js"></script>
+</body>
+</html>
